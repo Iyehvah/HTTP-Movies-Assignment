@@ -33,8 +33,10 @@ export default class Movie extends React.Component {
   };
 
   deleteMovie = (movie) => {
-    axios.delete(`http://localhost:5000/api/movies/${movie.id}`)
-    .then(res => console.log(res))
+    axios.delete(`http://localhost:5000/api/movies/${this.props.match.params.id}`)
+    .then(response => {
+      console.log(response);
+    })
     .catch(err => console.log(err))
   };
 
@@ -52,8 +54,10 @@ export default class Movie extends React.Component {
         <Link to={`/update-movie/${this.state.movie.id}`}>
           <div className="update-button">Update</div>
         </Link>
-
+        <Link to={`/`}>
           <div className="delete-button" onClick={this.deleteMovie}>Delete</div>
+        </Link>
+          
 
       </div>
     );
